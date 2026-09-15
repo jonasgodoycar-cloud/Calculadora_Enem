@@ -1,1 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora ENEM</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #eaf2ff;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 16px;
+        }
+
+        main {
+            width: 90%;
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #0d47a1;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 2px solid #c5d5ea;
+            border-radius: 7px;
+            font-size: 16px;
+            background-color: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #0d47a1;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #0d47a1;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        .erro {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 7px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .resultado {
+            text-align: center;
+        }
+
+        .texto-media {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .media {
+            color: #0d47a1;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .resultado h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .lista-notas {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nota {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #edf3fb;
+            padding: 15px 18px;
+            border-radius: 7px;
+            text-align: left;
+        }
+
+        .nota strong {
+            color: #0d47a1;
+            font-size: 17px;
+        }
+
+        footer {
+            background-color: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 26px;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .media {
+                font-size: 40px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Calculadora ENEM</h1>
+        <p>Calcule sua média das cinco áreas do ENEM</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+
+            <h2>Digite suas notas</h2>
+
+            {% if erro %}
+                <p class="erro">{{ erro }}</p>
+            {% endif %}
+
+            <form method="POST">
+
+                <label for="linguagens">
+                    Linguagens
+                </label>
+
+                <input
+                    type="number"
+                    id="linguagens"
+                    name="linguagens"
+                    min="0"
+                    max="1000"
+                    step="0.01"
+                    placeholder="Ex: 650"
+                    required
+                >
+
+                <label for="humanas">
+                    Ciências Humanas
+                </label>
+
+                <input
+                    type="number"
+                    id="humanas"
+                    name="humanas"
+                    min="0"
+                    max="1000"
+                    step="0.01"
+                    placeholder="Ex: 700"
+                    required
+                >
+
+                <label for="natureza">
+                    Ciências da Natureza
+                </label>
+
+                <input
+                    type="number"
+                    id="natureza"
+                    name="natureza"
+                    min="0"
+                    max="1000"
+                    step="0.01"
+                    placeholder="Ex: 600"
+                    required
+                >
+
+                <label for="matematica">
+                    Matemática
+                </label>
+
+                <input
+                    type="number"
+                    id="matematica"
+                    name="matematica"
+                    min="0"
+                    max="1000"
+                    step="0.01"
+                    placeholder="Ex: 750"
+                    required
+                >
+
+                <label for="redacao">
+                    Redação
+                </label>
+
+                <input
+                    type="number"
+                    id="redacao"
+                    name="redacao"
+                    min="0"
+                    max="1000"
+                    step="0.01"
+                    placeholder="Ex: 800"
+                    required
+                >
+
+                <button type="submit">
+                    Calcular média
+                </button>
+
+            </form>
+
+        </section>
+
+        {% if media is not none %}
+
+        <section class="card resultado">
+
+            <h2>Resultado</h2>
+
+            <p class="texto-media">
+                Sua média simples foi:
+            </p>
+
+            <p class="media">
+                {{ "%.2f"|format(media) }}
+            </p>
+
+            <h3>
+                Notas informadas
+            </h3>
+
+            <div class="lista-notas">
+
+                {% for nome, nota in notas.items() %}
+
+                <div class="nota">
+
+                    <span>
+                        {{ nome }}
+                    </span>
+
+                    <strong>
+                        {{ "%.2f"|format(nota) }}
+                    </strong>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+    <footer>
+
+        <p>Calculadora ENEM</p>
+
+        <p>
+            Projeto desenvolvido com Python, Flask, HTML e CSS.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
 
