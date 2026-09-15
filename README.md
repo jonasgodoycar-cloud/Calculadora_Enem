@@ -10,3 +10,4 @@ Esse é um projeto simples de uma calculado das notas do ENEM para saber sua mé
 - Adicione um arquivo Python com nome "enem_calcuiladora.py"
 - Crie uma pasta com nome "templates" e dentro dela crie um arquivo "index.html" e copie o codigo referente daqui do repositorio
 - Crie uma pasta com nome "static" e dentro dela crie um arquivo "style.css" e copie o codigo referente daqui do repositorio
+- No terminal digite "python enem_calculadora.py" para rodar e copie o número com http que aparecer, no caso, o "http://127.0.0.1:5000" e abra em seu navegador
